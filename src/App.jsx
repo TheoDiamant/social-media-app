@@ -18,6 +18,7 @@ function App() {
         <Outlet />
         <RightBar />
         </div>
+        <h1>yo</h1>
       </div>
     )
   }
