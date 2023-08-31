@@ -14,12 +14,16 @@ import Navbar from "./components/Navbar/Navbar";
 import LeftBar from "./components/LeftBar/LeftBar";
 import RightBar from "./components/RightBar/RightBar";
 import "./style.scss"
+import { useContext } from "react";
+import { DarkModeContext } from "./context/darkModeContext";
 function App() {
   const currentUser = true;
 
+  const {darkMode} = useContext(DarkModeContext)
+
   const Layout = () => {
     return (
-      <div className="theme-light">
+      <div className={`theme-${darkMode ? "dark" : "light" }`}>
         <Navbar />
         <div style={{ display: "flex" }}>
           <LeftBar />
