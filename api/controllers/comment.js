@@ -4,8 +4,6 @@ import jwt from "jsonwebtoken";
 import moment from "moment";
 
 export const getComments = (req, res, next) => {
-
-
   // Use placeholders for user IDs
   const q = `SELECT c.*, u.id AS userId, name, profilePic 
       FROM comments AS c 
@@ -19,7 +17,6 @@ export const getComments = (req, res, next) => {
   });
 };
 
-
 export const addComment = (req, res) => {
   const token = req.cookies.accessToken;
   if (!token) return res.status(401).json("Not logged in!");
@@ -27,14 +24,13 @@ export const addComment = (req, res) => {
   jwt.verify(token, "secretkey", (err, userInfo) => {
     if (err) return res.status(403).json("Token is not valid!");
 
-   
-
-    const q = "INSERT INTO comments(`desc`, `createdAt`, `userId`, `postId`) VALUES (?)";
+    const q =
+      "INSERT INTO comments(`desc`, `createdAt`, `userId`, `postId`) VALUES (?)";
     const values = [
       req.body.desc,
       moment(Date.now()).format("YYYY-MM-DD HH:mm:ss"),
       userInfo.id,
-      req.body.postId
+      req.body.postId,
     ];
 
     db.query(q, [values], (err, data) => {
@@ -43,3 +39,4 @@ export const addComment = (req, res) => {
     });
   });
 };
+
