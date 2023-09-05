@@ -58,9 +58,9 @@ function App() {
     {
       path: "/",
       element: (
-        // <ProtectedRoute>
+        <ProtectedRoute>
         <Layout />
-        // </ProtectedRoute>
+      </ProtectedRoute>
       ),
       children: [
         {
